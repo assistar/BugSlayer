@@ -1,0 +1,8 @@
+*.tlog
+*.txt
+bugslayerutil/.vs/
+Output/
+Release/
+bugslayerutil/WinDebug/
+bugslayerutil/WinRel/
+bugslayerutil/x64/Debug/
