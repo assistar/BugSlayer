@@ -247,12 +247,12 @@ public      :
                          IN  DWORD  SizeOfDll    )
 #endif
     {
-        return ( ::SymLoadModule ( m_hProcess   ,
+        return (static_cast<BOOL>(::SymLoadModule ( m_hProcess   ,
                                    hFile        ,
                                    ImageName    ,
                                    ModuleName   ,
                                    BaseOfDll    ,
-                                   SizeOfDll     ) ) ;
+                                   SizeOfDll     ) ) );
     }
 
     BOOL EnumerateLoadedModules ( IN PENUMLOADED_MODULES_CALLBACK
@@ -277,7 +277,11 @@ public      :
                                       ModuleInfo     ) ) ;
     }
 
-    DWORD SymGetModuleBase ( IN DWORD dwAddr )
+#ifdef _WIN64
+    DWORD64 SymGetModuleBase ( IN DWORD dwAddr )
+#else
+	DWORD SymGetModuleBase(IN DWORD dwAddr)
+#endif
     {
         return ( ::SymGetModuleBase ( m_hProcess , dwAddr ) ) ;
     }
